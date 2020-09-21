@@ -18,12 +18,17 @@ export class StudentsService {
   }
   createStudent(student: { name, email, details }) {
     let index = this.studentDetails.slice(-1)[0].id
-    const newIndex = index + 1;
-    const newStudent = { ...student, id: newIndex }
-    this.studentDetails.unshift(newStudent) 
+    if (index <= 5) {
+      const newIndex = Math.round((Math.random() * 50)+5)
+      const newStudent = { ...student, id: newIndex }
+      this.studentDetails.unshift(newStudent) 
+    }
+    else {
+      const newIndex = Math.round((Math.random() * 100)+10)
+      const newStudent = { ...student, id: newIndex }
+      this.studentDetails.unshift(newStudent) 
+    }
+
   }
-  deleteStudent(id) {
-    console.log(id)
-   this.studentDetails =  this.studentDetails.filter(student=>student.id === id)
-  }
+  
 }
